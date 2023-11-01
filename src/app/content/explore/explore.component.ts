@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { IArtworkResponse } from 'src/shared/models/interfaces/ArtworkResponse';
+import { Router } from '@angular/router';
+import { IArtworksResponse } from 'src/shared/models/interfaces/ArtworksResponse';
 import { ArtworkService } from 'src/shared/services/artwork.service';
 
 @Component({
@@ -9,26 +10,33 @@ import { ArtworkService } from 'src/shared/services/artwork.service';
   styleUrls: ['./explore.component.scss']
 })
 export class ExploreComponent implements OnInit {
-  responseData: IArtworkResponse | null = null;
-  currentPage : number = 1;
+  responseData: IArtworksResponse | null = null;
+  currentPage: number = 1;
+  searchText: string = "";
   isLoaded: boolean = false;
 
-  constructor(private artworkService : ArtworkService) {}
+  constructor(private artworkService: ArtworkService) { }
 
   ngOnInit(): void {
     this.artworkService.artworks$.subscribe({
       next: res => {
         this.responseData = res;
-        console.log(this.responseData?.data);
+        console.log(this.responseData);
         this.isLoaded = true;
       },
       error: err => console.log(err)
     })
-    this.artworkService.fetchArtworks(1,12); 
+    this.artworkService.fetchArtworks(1, 12, this.searchText);
   }
 
   handlePageChange(pageEvent: PageEvent) {
-    this.artworkService.fetchArtworks(pageEvent.pageIndex+1, pageEvent.pageSize);
+    this.artworkService.fetchArtworks(pageEvent.pageIndex + 1, pageEvent.pageSize, this.searchText);
+    this.isLoaded = false;
+  }
+
+  getSearchedData(text: string) {
+    this.searchText = text;
+    this.artworkService.fetchArtworks(1, 12, text);
     this.isLoaded = false;
   }
 }

@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContentComponent } from './content/content.component';
 import { HomeComponent } from './content/home/home.component';
 import { ExploreComponent } from './content/explore/explore.component';
+import { ArtworkComponent } from './content/artwork/artwork.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ExploreComponent } from './content/explore/explore.component';
     FooterComponent,
     ContentComponent,
     HomeComponent,
-    ExploreComponent
+    ExploreComponent,
+    ArtworkComponent
   ],
   imports: [
     BrowserModule,

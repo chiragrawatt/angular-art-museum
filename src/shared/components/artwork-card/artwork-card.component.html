@@ -1,4 +1,4 @@
-<mat-card class="shadow-none border border-1 p-1">
+<mat-card  class="shadow-none border border-1 p-1" (click)="navigateToArtwork(artwork.id)">
     <img mat-card-image src="https://www.artic.edu/iiif/2/{{artwork.image_id}}/full/843,/0/default.jpg">
     <mat-card-header>
         <mat-card-title id="title">{{artwork.title}}</mat-card-title>

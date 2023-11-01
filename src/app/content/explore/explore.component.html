@@ -7,9 +7,9 @@
             <div class="col"></div>
             <div class="col-md-8 col-11">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Type here..." aria-label="Recipient's username"
+                    <input #searchText type="text" class="form-control" placeholder="Type here..." aria-label="Recipient's username"
                         aria-describedby="button-addon2">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    <button (click)="getSearchedData(searchText.value)" class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
                 </div>
             </div>
             <div class="col"></div>
