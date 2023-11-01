@@ -1,0 +1,20 @@
+export interface IArtwork {
+          id: number,
+          api_link: string,
+          title: string,
+          date_start: number,
+          date_end: number,
+          date_display: string,
+          artist_display: string,
+          place_of_origin: string,
+          description: string | null,
+          dimensions: string,
+          medium_display: string,
+          inscription: string | null,
+          credit_line: string,
+          department_title: string,
+          department_id: string,
+          artist_id: number,
+          artist_title: string,
+          image_id: string
+}

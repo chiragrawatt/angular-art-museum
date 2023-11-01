@@ -1,0 +1,35 @@
+<div class="container-lg">
+    <section class="py-5">
+        <div class="text-center">
+            <p class="display-4">Welcome to the Art Museum of Chicago.</p>
+        </div>
+        <div class="row mt-5">
+            <div class="col"></div>
+            <div class="col-md-8 col-11">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Type here..." aria-label="Recipient's username"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div *ngIf="!isLoaded" class="d-flex justify-content-center align-items-center">
+            <mat-spinner></mat-spinner><h1 class="ms-5">Loading</h1>
+        </div>
+        <div *ngIf="isLoaded" class="row row-gap-3">
+            <div  class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let artwork of responseData?.data">
+                <app-artwork-card [artwork]="artwork"></app-artwork-card>
+            </div>
+        </div>
+    </section>
+    <mat-paginator class="mb-4" 
+        [length]="responseData?.pagination?.total" 
+        [pageSizeOptions]="[12,24,36]"
+        [showFirstLastButtons]="true"
+        [pageIndex]="currentPage"
+        (page)="handlePageChange($event)">
+    </mat-paginator>
+</div>

@@ -1,0 +1,21 @@
+img {
+    object-fit: contain;
+    height: 300px;
+}
+
+#title {
+    font-weight: 700;
+    font-family: 'Noto Serif', serif;
+    font-size: 1.2rem;
+}
+
+mat-card-subtitle {
+    font-family: 'Noto Serif', serif;
+}
+
+mat-card {
+    &:hover {
+        scale: 1.05;
+        transition-duration: 500ms;
+    }
+}
