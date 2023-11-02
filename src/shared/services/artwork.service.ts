@@ -8,6 +8,7 @@ import { IArtwork } from '../models/interfaces/Artwork';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ArtworkService {
   artworks$: BehaviorSubject<IArtworksResponse | null> = new BehaviorSubject<IArtworksResponse | null>(null);
   artwork$: BehaviorSubject<IArtwork | null> = new BehaviorSubject<IArtwork | null>(null);
@@ -19,20 +20,46 @@ export class ArtworkService {
     if(search.length!=0) {
       apiURL = `${ARTWORKS_API_URL}/search?q=${search}&limit=${limit}`;
     }
+    this.artworks$.next(null);
+
+
     this.http.get(apiURL)
       .subscribe({
-        next: res => this.artworks$.next(res as IArtworksResponse),
+        next: res => {
+          if(search.length!=0) {
+            let ids : number[] = (res as IArtworksResponse).data.map(artwork => {
+              return artwork.id;
+            })
+            console.log(ids);
+            this.fetchArtworksById(ids);
+          } else {
+            this.artworks$.next(res as IArtworksResponse);
+          }
+          
+        },
         error: err => console.log(err)
       });
   }
 
   fetchArtworkById(id: string) {
     let apiURL = `${ARTWORKS_API_URL}?ids=${id}`;
+    this.artwork$.next(null);
 
     this.http.get<IArtworksResponse>(apiURL)
       .subscribe({
         next: res => this.artwork$.next(res.data[0]),
         error: err => console.log(err)
     })
+  }
+
+  fetchArtworksById(ids: number[]) {
+    let apiURL = `${ARTWORKS_API_URL}?ids=${ids.toString()}`;
+    this.artworks$.next(null);
+
+    this.http.get(apiURL)
+      .subscribe({
+        next: res => this.artworks$.next(res as IArtworksResponse),
+        error: err => console.log(err)
+      });
   }
 }

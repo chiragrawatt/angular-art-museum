@@ -19,3 +19,16 @@ mat-card {
         transition-duration: 500ms;
     }
 }
+
+.fav-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    font-size: 1.5rem;
+
+    &:hover {
+        color: red;
+    }
+}
+

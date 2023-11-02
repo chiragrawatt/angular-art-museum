@@ -16,5 +16,7 @@ export interface IArtwork {
           department_id: string,
           artist_id: number,
           artist_title: string,
-          image_id: string
+          image_id: string,
+          publication_history: string,
+          exhibition_history: string
 }
