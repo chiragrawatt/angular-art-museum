@@ -1,3 +1,45 @@
-<section class="container-lg">
-    <img src="" />
+<section class="container-lg py-5">
+    <div class="d-flex justify-content-center flex-column">
+
+        <img mat-card-image src="https://www.artic.edu/iiif/2/{{artwork?.image_id}}/full/843,/0/default.jpg"
+            onerror="this.src='assets/images/default_image.png'">
+
+        <h1 id="title" class="text-center mt-4 mb-0">{{artwork?.title}}</h1>
+        <cite class="text-center">By {{artwork?.artist_title}}</cite>
+
+        <mat-divider class="mt-5"></mat-divider>
+
+        <div class="conatiner px-5 py-3">
+            <div class="row">
+                <span class="detail-label col-sm-3 col-12">Artist : </span>
+                <div class="col" [innerHTML]="artwork?.artist_display || 'unknown'">
+                </div>
+                <mat-divider class="my-3"></mat-divider>
+            </div>
+            <div class="row">
+                <span class="detail-label col-sm-3 col-12">Dimensions : </span>
+                <div class="col" [innerHTML]="artwork?.dimensions || 'Not specified'">
+                </div>
+                <mat-divider class="my-3"></mat-divider>
+            </div>
+            <div class="row">
+                <span class="detail-label col-sm-3 col-12">Description : </span>
+                <div class="col" [innerHTML]="artwork?.description || 'Not specified'">
+                </div>
+                <mat-divider class="my-3"></mat-divider>
+            </div>
+            <div class="row">
+                <span class="detail-label col-sm-3 col-12">Publication History : </span>
+                <div class="col" [innerHTML]="artwork?.publication_history || 'unknown'">
+                </div>
+                <mat-divider class="my-3"></mat-divider>
+            </div>
+            <div class="row">
+                <span class="detail-label col-sm-3 col-12">Exhibition History : </span>
+                <div class="col" [innerHTML]="artwork?.exhibition_history || 'unknown'">
+                </div>
+                <mat-divider class="my-3"></mat-divider>
+            </div>
+        </div>
+    </div>
 </section>

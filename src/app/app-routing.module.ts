@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './content/home/home.component';
 import { ExploreComponent } from './content/explore/explore.component';
 import { ArtworkComponent } from './content/artwork/artwork.component';
+import { FavoriteArtworksComponent } from 'src/shared/content/favorite-artworks/favorite-artworks.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: "artwork/:id",
     component: ArtworkComponent
+  },
+  {
+    path: "favorites",
+    component: FavoriteArtworksComponent
   },
   {
     path: '',
